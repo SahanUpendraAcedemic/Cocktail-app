@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-const favorites = () => {
+const userfavorites = () => {
     const [favDrinks,setfavDrinks] = useState([]);
 
-    const favoriteDrink = (drink) => {
+    const addfavDrinks = (drink) => {
         if(!favDrinks.find((favDrink) => favDrink.idDrink === drink.idDrink)){
             setfavDrinks([...favDrinks,drink]);
         }
@@ -14,7 +14,7 @@ const favorites = () => {
         setfavDrinks(favDrinks.filter((favDrink) => favDrink.idDrink !== drink.idDrink));
     }
 
-    return {favDrinks,favoriteDrink,removeFavorite};
+    return {favDrinks,addfavDrinks,removeFavorite};
 };
 
-export default favorites;
+export default userfavorites;
