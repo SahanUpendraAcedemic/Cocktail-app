@@ -21,9 +21,11 @@ export default function Home() {
     }
 
     const handelSearch = async () => {
+        setLoading(true);
         const serch = axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${search}`);
         const response = await serch;
         setResults(response.data.drinks || []);
+        setLoading(false);
     }
 
     useEffect(() => {
@@ -32,20 +34,20 @@ export default function Home() {
     console.log(cocktails);
 
   return (
-        <div>
-        <div className='flex justify-between'>
-        <h1 className='flex font-md'>Cocktails</h1>
-        <p>Here are some cocktails that suits for you.</p>
-        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Refresh</button>
+        <div className='p-10'>
+            <h1 className='flex text-5xl font-bold'>Cocktails</h1>
+        <div className='flex justify-between flex-row'>
+            <p className='flex justify-start'>Here are some cocktails that suits for you.</p>
+            <button className='bg-white text-black-100 border border-black hover:bg-black hover:text-white font-bold py-2 px-4 rounded' onClick={fetchCocktails} disabled={loading}>Refresh</button>
         </div>
-        <div>
-            {cocktails.map(cocktail => (
+        <div className='flex justify-center flex-row m-10'>
+            { loading ? (<p>"Loading"</p>) : (cocktails.map(cocktail => (
                 <ItemCard key={cocktail.idDrink} cocktail={cocktail} />
-            ))}
+            )))}
         </div>
-        <div>
-            <input className='h-10 rounded-lg' type="text" value={search} onChange={(e) => setSearch(e.target.value)}/>
-            <button onClick={handelSearch}>Search</button>
+        <div className='flex justify-center gap-5 flex-row mt-5'>
+            <input className=' border border-lg h-10 rounded-lg' type="text" value={search} onChange={(e) => setSearch(e.target.value)}/>
+            <button className='bg-white text-black-100 border border-black hover:bg-black hover:text-white font-bold py-2 px-4 rounded' onClick={handelSearch}>Search</button>
         </div>
         <div>
             {results.map(cocktail => (

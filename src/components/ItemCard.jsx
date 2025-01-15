@@ -5,13 +5,13 @@ const ItemCard = ({cocktail}) => {
     const {strDrink,strDrinkThumb,strInstructions} = cocktail;
 
   return (
-    <div className='flex max-h-sm'>
+    <div className='flex flex-col justify-between max-h-sm border-2 border-gray-200 rounded-lg p-4 m-4'>
         <div>
-            <img className='size-0' src={strDrinkThumb} alt={strDrink} />
+            <img className='object-contain size-20 rounded-lg' src={strDrinkThumb} alt={strDrink} />
         </div>
         <div>
-            <h2>{strDrink}</h2>
-            <p>{strInstructions}</p>
+            <h2 className='font-bold'>{strDrink}</h2>
+            
         </div>
     </div>
   )

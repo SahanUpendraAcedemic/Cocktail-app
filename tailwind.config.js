@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        serif: ["Inria Sans"],
+        serif: ["Inria Sans"]
       },
     },
   },
